@@ -125,3 +125,26 @@
     text-decoration: none;
     color:red;
 }
+@media screen and (max-width:768px){
+    .Footer_section{
+        display:flex;
+        flex-direction: column;
+        background-color: #b3bf99;
+        border-top: 3px solid rgb(255, 217, 0) !important;
+        width: 100%;
+        border-radius: 25px 25px 0px 0px;
+        height:max-content;
+        justify-content: space-between;
+    }  
+    .about_containt{
+        width:100% !important;
+        padding:1rem;
+        text-align: center; 
+    }
+    .links-sections{
+        display: flex;
+        gap: 50;
+
+
+    }
+}

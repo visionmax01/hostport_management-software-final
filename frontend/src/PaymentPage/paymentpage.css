@@ -1,5 +1,9 @@
 .main-container{
      align-items: center;
+     font-size: 62.5%;
+}
+.heading-topic{
+    font-size: 2.5rem;
 }
 .QR-Main-Cobtainer{
     display: flex;
@@ -13,10 +17,9 @@
     /* margin-bottom: 10px; */
 }
 .Heading{
-    margin-top: 5%;
+    margin-top: 4rem;
     text-align: center;
     margin-bottom: 20px;
-
 }
 .QR-Container-one{
     width: 350px;
@@ -77,4 +80,66 @@
     border-style: none !important;
     box-shadow: 3px 3px 5px green;
 
+}
+
+@media screen and(max-width: 768px) {
+    
+    .QR-Main-Cobtainer{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        height: max-content;
+        width: 100%;
+        margin-top: 2%;
+        transition: all ease-in-out 0.5s;
+        animation-duration: 4s;
+        /* margin-bottom: 10px; */
+    }
+    .Heading{
+        margin-top: 5%;
+        text-align: center;
+        margin-bottom: 1.2rem;
+    
+    }
+    .heading-topic{
+        font-size: 1rem;
+    }
+    .QR-Container-one{
+        width: 350px;
+        height: 400px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .back_design{
+        position: relative;
+        z-index: 100;
+        width: 250px;
+        margin-top:100px;
+        margin-left: 35px;
+        height: 250px;
+        background-color: #DADFFB;
+        rotate: 45deg;
+        flex-wrap: wrap;
+        border-radius: 40px;
+        box-shadow:4px 4px 10px #ffa2a2  ;
+    }
+    .QR-image{
+        width: 250px;
+        height: 350px;
+        position: relative;
+        z-index: 200;
+        margin-top:-400px;
+        margin-left: 35px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 10px #000000 ;
+    
+    }
+    .information{
+        text-align: center;
+        font-size: 15px;
+    }
+    
+    .Note-text{
+       color: Red;
+    } 
 }

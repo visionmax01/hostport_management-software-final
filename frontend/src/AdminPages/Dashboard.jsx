@@ -13,8 +13,6 @@ import { alpha, styled } from "@mui/material/styles";
 import { pink } from "@mui/material/colors";
 import Switch from "@mui/material/Switch";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const PinkSwitch = styled(Switch)(({ theme }) => ({
   "& .MuiSwitch-switchBase.Mui-checked": {
@@ -51,19 +49,6 @@ function Dashboard() {
     second: "2-digit",
     hour12: true,
   });
-
-    const navigate = useNavigate()
-    axios.defaults.withCredentials = true;
-    useEffect(() => {
-      axios.get('http://localhost:3000/auth/verify')
-      .then(res=>{
-        if(res.data.status){
-
-        }else{
-          navigate('/login')
-        }
-      })
-    })
   return (
     <div>
       <AdminNavBar/>

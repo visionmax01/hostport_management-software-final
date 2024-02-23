@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Axios from "axios";
 import  '../LoginRegisterPage/register.css'
 
+import Sidenav from "../Components/Sidenav";
+import AdminNavBar from "../Components/AdminNavBar";
+import Box from "@mui/material/Box";
+import "../Components/css/dashboard.css";
+
 const Register = () => {
   const [role, SetRole] = useState("");
   const [username, setUsername] = useState("");
@@ -34,7 +39,17 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+
+    <div>
+    <AdminNavBar/>
+    <div className="back-bg-black">
+      <Box sx={{ display: "flex" }}>
+        <Sidenav/>
+        <Box
+          component="main"
+          sx={{ flexGrow: 1, p: 1, backgroundColor: "#fff" }}
+        >
+        <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
         <h1>Register</h1>
         <label htmlFor="role">Admin Type:</label>
@@ -84,6 +99,14 @@ const Register = () => {
        </div>
       </form>
     </div>
+        </Box>
+      </Box>
+    </div>
+  </div>
+
+
+
+    
   );
 };
 

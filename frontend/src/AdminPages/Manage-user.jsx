@@ -6,22 +6,9 @@ import "../AdminPages/css/manage-user.css";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 
 function ManageUser() {
-  const Navigate = useNavigate();
-  axios.defaults.withCredentials = true;
-  useEffect(() => {
-    axios.get('http://localhost:3000/auth/verify')
-    .then(res=>{
-      if(res.data.status){
-
-      }else{
-        Navigate('/login')
-      }
-    })
-  })
   return (
     <>
       <AdminNavBar />

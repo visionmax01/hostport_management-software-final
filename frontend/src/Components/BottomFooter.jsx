@@ -24,6 +24,7 @@ function BottomFooter() {
             the benefits of a robust internet connection.
           </p>
         </div>
+        <div className="links-sections">
         <div className="links-section">
           <h2>Support</h2>
           <ul>
@@ -51,6 +52,7 @@ function BottomFooter() {
               <a href="#">Payments</a>
             </li>
           </ul>
+        </div>
         </div>
         <div className="contact_containt">
           <h2>+977-9819931223</h2>

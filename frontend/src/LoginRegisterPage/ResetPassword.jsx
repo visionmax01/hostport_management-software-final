@@ -141,10 +141,10 @@ const ResetPassword = () => {
         toastOptions={{
           style: {
             marginTop: "50px",
-            height: "70px",
-            padding: "0px 25px 0px 25px",
+            height: "auto",
+            padding: "5px 25px 5px 25px",
             background: "white",
-            color: "#4d0101",
+            color: "red",
             fontSize: "20px",
             fontWeight: "900",
           },

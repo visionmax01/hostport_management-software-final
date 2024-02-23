@@ -43,7 +43,7 @@ router.post('/login', async(req, res) => {
   if(!validpassword){
     return res.json({message:"password is incorrect"})
   }
-  const token = jwt.sign({username: admin.username},process.env.KEY,{expiresIn:'5m'})
+  const token = jwt.sign({username: admin.username},process.env.KEY,{expiresIn:'1h'})
   res.cookie('token', token,{httpOnly:true, maxAge:36000})
   return res.json({status:true, message:"Login Successfully"})
 
