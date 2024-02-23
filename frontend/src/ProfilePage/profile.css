@@ -1,0 +1,133 @@
+.profile-img{
+    width: 250px;
+    width: 250px;
+}
+
+
+.nav{
+    background-color: rgba(255, 162, 0, 0.148);
+    border-radius: 8px;
+
+}
+.nav-link.active {
+    background-color: transparent;
+    border-radius: 8px;
+    color: #007bff; 
+    font-weight: bold;
+  }
+  .nav-link{
+    cursor: pointer;
+    color: #000000; 
+    font-weight: bold;
+  }
+  .nav-link:hover{
+    cursor: pointer;
+    color: #fe8c00; 
+  }
+  
+  .tab-content {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .tab-pane {
+    margin-top: 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 8px;
+    background-color: transparent;
+
+
+  }
+  .label-text{
+  
+  }
+  .profile-input{
+    border-radius: none;
+    outline: none;
+    border-style: none;
+    background-color: transparent;
+    border-bottom: 1px solid #000; 
+    padding: 5px; 
+    margin: 5px 0;
+  
+  
+  }
+  .form-group-profile{
+    cursor:default;
+
+  }
+  .text-label{
+    width: 180px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .user-detail{
+    display: flex;
+    flex-direction: Row;
+    margin-left: 10px;
+  }
+  .user-detail td{
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: Row;
+  }
+.test-style{
+    margin-right: 50px;
+    font-weight: 900;
+    font-size: 20px;
+ }
+ .user-data{
+    color: salmon;
+    font-size: 20px;
+    font-weight: 400;
+ }
+  .tab-pane.show {
+    opacity: 1;
+    max-height: 1000px;
+  }
+  .btn-change-pic{
+    background-color: #3e98f8;
+    border-style: none;
+    outline: none;
+    text-align: center;
+    width: 250px;
+    font-size: 18px;
+    color:white;
+    transition: ease 0.5s;
+  }
+  .btn-change-pic:hover{
+    cursor: pointer;
+    background-color: #003e81;
+    border-style: none;
+    outline: none;
+    text-align: center;
+    width: 250px;
+    font-size: 18px;
+  }
+  .btn-edit-profile{
+    background-color: #3e98f8;
+    border-style: none;
+    outline: none;
+    text-align: center;
+    width: 120px;
+    padding: 5px 0px 5px 0px;
+    font-size: 18px;
+    color:white;
+    transition: ease 0.5s;
+  }
+  .btn-edit-profile:hover{
+    cursor: pointer;
+    background-color: #003e81;
+    border-style: none;
+    outline: none;
+    text-align: center;
+    width: 120px;
+    font-size: 18px;
+  }
+  .chlabel{
+    color: blue;
+    font-size: 14px;
+  }

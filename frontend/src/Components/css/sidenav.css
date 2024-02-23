@@ -1,0 +1,17 @@
+/* Add this CSS for active tab styling */
+.sidenav-bg{
+  background-color: gray;
+}
+.active {
+    background-color: #64dd17; 
+
+  }
+
+.text-sidenav-section{
+    color: rgb(0, 0, 0);
+
+}
+.hoverinfo:hover{
+    background-color: #64dd17;
+
+}

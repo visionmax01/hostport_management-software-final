@@ -1,0 +1,28 @@
+.btn-join-formActivate{
+    border-radius: 5px;
+    border-style: none;
+    margin-left: 10px;
+    color: white;
+    transition: all 0.5s ease-in-out;
+    background-color: green;
+}
+.btn-join-formDelete{
+    border-radius: 5px;
+    border-style: none;
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+    transition: all 0.5s ease-in-out;
+}
+.btn-join-formUpdate{
+    border-radius: 5px;
+    border-style: none;
+    margin-left: 10px;
+    background-color: rgb(255, 132, 0);
+    color: white;
+    transition: all 0.5s ease-in-out;
+}
+.animation-key:hover{
+    transform: translateY(-3px);
+    box-shadow: 2px 2px 2px rgb(165, 165, 165);
+}

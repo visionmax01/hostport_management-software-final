@@ -1,0 +1,80 @@
+.main-container{
+     align-items: center;
+}
+.QR-Main-Cobtainer{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    height: max-content;
+    width: 100%;
+    margin-top: 2%;
+    transition: all ease-in-out 0.5s;
+    animation-duration: 4s;
+    /* margin-bottom: 10px; */
+}
+.Heading{
+    margin-top: 5%;
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+.QR-Container-one{
+    width: 350px;
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.back_design{
+    position: relative;
+    z-index: 100;
+    width: 250px;
+    margin-top:100px;
+    margin-left: 35px;
+    height: 250px;
+    background-color: #DADFFB;
+    rotate: 45deg;
+    flex-wrap: wrap;
+    border-radius: 40px;
+    box-shadow:4px 4px 10px #ffa2a2  ;
+}
+.QR-image{
+    width: 250px;
+    height: 350px;
+    position: relative;
+    z-index: 200;
+    margin-top:-400px;
+    margin-left: 35px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px #000000 ;
+
+}
+.information{
+    text-align: center;
+    font-size: 25px;
+}
+
+.Note-text{
+   color: Red;
+}
+.paymrntForm-btn{
+    font-size: 20px;
+    background-color: #8894FF;
+    color: white !important;
+    border-radius: 8px;
+    width: 150px;
+    height: 40px;
+    border-style: none !important;
+    transition: all ease-in-out 0.3s;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+.paymrntForm-btn:hover{
+    font-size: 20px;
+    background-color: #6d77c9;
+    color: white !important;
+    border-radius: 8px;
+    width: 150px;
+    border-style: none !important;
+    box-shadow: 3px 3px 5px green;
+
+}
