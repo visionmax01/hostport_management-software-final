@@ -63,8 +63,14 @@ function NewRequest() {
                           payment.png
                         </td>
                         <td>
-                          <button className="animation-key btn-join-formActivate">
+                          <button className="animation-key btn-join-formActivate"
+                          onClick={() => {
+                            Navigate("/user-activation");
+                          }}
+                          >
+                            
                             <ManageHistoryIcon />
+                            
                           </button>
                           <button className="animation-key btn-join-formDelete">
                             <DeleteIcon />

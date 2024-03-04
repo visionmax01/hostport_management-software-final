@@ -39,7 +39,7 @@ function BottomFooter() {
             </li>
           </ul>
         </div>
-        <div className="links-section">
+        <div className="links-section1">
           <h2>Support</h2>
           <ul>
             <li>

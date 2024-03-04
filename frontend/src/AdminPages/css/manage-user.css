@@ -111,10 +111,8 @@
 .search-btn-style:hover{
   background-color: #198754;
 }
-
 /*table-container css */
-
-.table-container {
+.table-container{
   max-height: 400px;
   overflow-y: auto;
 }
@@ -128,11 +126,14 @@ table {
   background-color: transparent;
   border-collapse: collapse;
 }
-
+.table-head th{
+  color: #ffffff;
+}
 thead {
   border-bottom: 2px solid blue;
-  width: calc(100% - 17px); /* Adjusting for scrollbar width */
+  width: calc(100% - 17px); 
 }
+
 .tabletr-value:hover{
   background-color: rgba(255, 255, 255, 0.79);
   color: rgb(0, 0, 0);

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import  '../LoginRegisterPage/register.css'
-
 import Sidenav from "../Components/Sidenav";
 import AdminNavBar from "../Components/AdminNavBar";
 import Box from "@mui/material/Box";

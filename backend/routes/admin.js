@@ -8,6 +8,14 @@ import nodemailer from 'nodemailer'
 const router = express.Router();
 
 
+router.post('/manage-users', function(req, res) {
+      if(Admin){
+        res.redirect('/manage-users');
+      }else{
+        res.redirect('/login');
+      }
+});
+
 /* register/ add Admin finction here */
 router.post('/register', async (req, res) => {
   const { role,username, name, email, password } = req.body;
@@ -133,4 +141,4 @@ router.get('/logout', (req, res) => {
   res.clearCookie('token');
   res.json({status:true, message:"Logout Successfully"})
 })
-export { router as UserRouter };
+export { router as AdminRouter };

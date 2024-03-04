@@ -15,19 +15,19 @@ function PaymentPage() {
         <NavBar />
         <div className="Heading">
           {" "}
-          <h2 className="heading-topic">“Scan Any Qr To Make Payment”</h2>
+          <h2 >“Scan Any Qr To Make Payment”</h2>
         </div>
 
         <div className="QR-Main-Cobtainer">
-          <div className="QR-Container-one">
+          <div className="QR-Container-one" data-aos="fade-right">
             <div className="back_design"></div>
             <img src={Qr1} className="QR-image" alt=""></img>
           </div>
-          <div className="QR-Container-one">
+          <div className="QR-Container-one" data-aos="zoom-in">
             <div className="back_design"></div>
             <img src={Qr2} className="QR-image" alt=""></img>
           </div>
-          <div className="QR-Container-one">
+          <div className="QR-Container-one" data-aos="fade-left">
             <div className="back_design"></div>
             <img src={Qr3} className="QR-image" alt=""></img>
           </div>
@@ -37,7 +37,7 @@ function PaymentPage() {
           <br />
           ! After successful Payment please Click Below Payment Form Button !
           <br />
-          To Continue Your Service.{" "}
+          To Continue Your Service.
         </p>
         <center>
           <button className="paymrntForm-btn">Payment Form</button>

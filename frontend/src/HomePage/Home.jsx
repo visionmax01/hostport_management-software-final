@@ -10,6 +10,12 @@ import NavBar from "../Components/NavBar";
 import BottomFooter from "../Components/BottomFooter";
 import "./Home.css";
 import { useState, useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+AOS.init({
+  duration: 2000,
+  easing: 'ease-in-out-sine',
+});
 
 function Home() {
   const [slideIndex, setSlideIndex] = useState(0);
@@ -73,7 +79,7 @@ function Home() {
             </h1>
           </div>
           <div className="offer"></div>
-          <div className="join-btn">
+          <div className="join-btn"  data-aos="fade-right">
             <p>
               {" "}
               Click <span className="book-link">Book Now</span> To, Connect With
@@ -91,7 +97,7 @@ function Home() {
         </div>
 
         {/* section2-phase of main page */}
-        <div className="right_part">
+        <div className="right_part"data-aos="fade-left">
           <div className="background-container">
             <div className="image-scroller">
               <div class="slideshow-container">
@@ -112,20 +118,20 @@ function Home() {
           </div>
           <div className="dot-container">
           <span className="dot" onClick={() => currentSlide(1)}></span>
-        <span className="dot" onClick={() => currentSlide(2)}></span>
-        <span className="dot" onClick={() => currentSlide(3)}></span>
+          <span className="dot" onClick={() => currentSlide(2)}></span>
+          <span className="dot" onClick={() => currentSlide(3)}></span>
           </div>
         </div>
       </div>
       <div className="home-main-section2">
         <div className="Package-title"> New Year Package</div>
         <div className="package-card-container">
-          <div className="package-card-left">
+          <div className="package-card-left" data-aos="fade-right">
             <img className="card-image" src={packageimg1} alt="" />
             <h1 className="heading-containt">STANDARD</h1>
-            <div className="package-detail">
+            <div className="package-detail" >
               <span className="details">
-                Speed -<b>1Mbps</b>{" "}
+                Speed -<b>1MBps</b>{" "}
               </span>
               <br />
               <span className="details">
@@ -145,12 +151,12 @@ function Home() {
             <button className="btn-join-small"> Join Now</button>
           </div>
 
-          <div className="package-card-left">
+          <div className="package-card-left" data-aos="fade-up">
             <img className="card-image" src={packageimg1} alt="" />
             <h1 className="heading-containt">Lite Pack</h1>
             <div className="package-detail">
               <span className="details">
-                Speed - <b>1.5Mbps</b>
+                Speed - <b>1.5MBps</b>
               </span>
               <br />
               <span className="details">
@@ -169,13 +175,13 @@ function Home() {
             <button className="btn-join-small"> Join Now</button>
           </div>
 
-          <div className="package-card-right">
+          <div className="package-card-right" data-aos="fade-down">
             <div className="card-containt">
               <img className="card-image" src={packageimg1} alt="" />
               <h1 className="heading-containt">Premium</h1>
               <div className="package-detail">
                 <span className="details">
-                  Speed - <b>2Mbps</b>
+                  Speed - <b>2MBps</b>
                 </span>
                 <br />
                 <span className="details">
@@ -200,13 +206,13 @@ function Home() {
             </div>
           </div>
 
-          <div className="package-card-right">
+          <div className="package-card-right" data-aos="fade-left">
             <div className="card-containt">
               <img className="card-image" src={packageimg1} alt="" />
               <h1 className="heading-containt">Ultra Premium</h1>
               <div className="package-detail">
                 <span className="details">
-                  Speed - <b>2.5Mbps</b>
+                  Speed - <b>2.5MBps</b>
                 </span>
                 <br />
                 <span className="details">
@@ -234,8 +240,8 @@ function Home() {
       </div>
 
       {/* section3-phase of main page */}
-      <div className="home-main-section3">
-        <div className="left-side1">
+      <div className="home-main-section3" >
+        <div className="left-side1" data-aos="fade-right">
           <h1 className="text-top">
             Direct Connect To your <br />
             Smart Devices
@@ -243,17 +249,17 @@ function Home() {
           <h2 className="top-text1">2.4 Gh / 5 Gh</h2>
           <img className="card-image-left" src={hologram} alt="" />
         </div>
-        <div className="left-side2">
+        <div className="left-side2" data-aos="fade-left">
           <img src={packageimg1} className="left-side-img" alt=""></img>
         </div>
       </div>
 
       <div className="home-main-section4">
-        <div className="img-side1">
+        <div className="img-side1" data-aos="zoom-in">
           <img src={eap110} className="left-side-img1" alt="" />
         </div>
 
-        <div className="img-side2">
+        <div className="img-side2" data-aos="zoom-in">
           <img src={image} className="right-side-img2" alt="" />
         </div>
       </div>

@@ -6,9 +6,11 @@ import "../AdminPages/css/manage-user.css";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useNavigate } from "react-router-dom";
 
 
 function ManageUser() {
+  const Navigate = useNavigate()
   return (
     <>
       <AdminNavBar />
@@ -40,7 +42,7 @@ function ManageUser() {
                 <div class="table-responsive">
                   <table className="table-data-display">
                     <thead>
-                      <tr>
+                      <tr className="table-head">
                         <th>S.N</th>
                         <th>Account No</th>
                         <th>Name</th>

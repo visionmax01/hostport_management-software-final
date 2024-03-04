@@ -42,20 +42,17 @@ function App() {
             path="/admin-dashboard"
             element={<Protected Component={Dashboard} />}
           />
-          <Route
-            path="/manage-user"
-            element={<Protected Component={ManageUser} />}
-          />
-          <Route path="/payment-detail" element={<Protected Component={PaymentDetail}  />} />
-          <Route path="/new-joining-request" element={<Protected Component={NewRequest}  />} />
-          <Route path="/user-complaint" element={<Protected Component={UserComplaint}  />} />
-          <Route path="/add-user" element={<Protected Component={AddUser}  />} />
-          <Route path="/update-user-detail" element={<Protected Component={UpdateUser}  />} />
-          <Route path="/user-profile-view" element={<Protected Component={UserProfile}  />} />
-          <Route path="/user-activation" element={<Protected Component={ActivateUser}  />} />
+          <Route path="/manage-user" element={<ManageUser/>}/>
+          <Route path="/payment-detail" element={<PaymentDetail/>} />
+          <Route path="/new-joining-request" element={<NewRequest/>} />
+          <Route path="/user-complaint" element={<UserComplaint/>} />
+          <Route path="/add-user" element={<AddUser  />} />
+          <Route path="/update-user-detail" element={<UpdateUser />} />
+          <Route path="/user-profile-view" element={<UserProfile/>} />
+          <Route path="/user-activation" element={<ActivateUser />} />
           <Route path="/admin-profile" element={<AdminProfile />} />
-          <Route path="/change-password" element={<Protected Component={ChangePassword}  />} />
-          <Route path="/register" element={<Protected Component={Register}  />} />
+          <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/register" element={<Register/>} />
           {/* Protected routes */}
         </Routes>
       </BrowserRouter>

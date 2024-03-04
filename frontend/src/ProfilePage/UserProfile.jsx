@@ -30,7 +30,7 @@ function UserProfile() {
                   </div>
                   <div className="col-7">
                     <h4>Bhishan Prasad Sah</h4>
-                    <p>Cosumer</p>
+                    <p>Customer</p>
                     <ul className="nav" role="tablist">
                       <li className="nav-item">
                         <a

@@ -13,5 +13,5 @@
 }
 .hoverinfo:hover{
     background-color: #64dd17;
-
+    display: block;
 }

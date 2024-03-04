@@ -40,7 +40,7 @@ function NavBar() {
                     <Link to="/support">Support</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/admin-dashboard">admin</Link>
+                    <Link to="/admin-dashboard">Admin</Link>
                   </li>
                   <li className="nav-item">
                     <Link className="loginbtn" to="/login">

@@ -20,6 +20,7 @@ import NewReleasesIcon from "@mui/icons-material/NewReleases";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { NavLink } from "react-router-dom";
 import "../Components/css/sidenav.css";
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 const drawerWidth = 240;
 
@@ -307,7 +308,7 @@ export default function MiniDrawer() {
                   justifyContent: "center",
                 }}
               >
-                <NewReleasesIcon />
+                <PersonAddAlt1Icon />
               </ListItemIcon>
               <ListItemText
                 className="text-sidenav-section"

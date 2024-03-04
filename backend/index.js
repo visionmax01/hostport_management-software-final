@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import { UserRouter } from './routes/admin.js';
+import { AdminRouter } from './routes/admin.js';
+import { UserRouter } from './routes/user.js';
 import cookieParser from 'cookie-parser';
 
 dotenv.config();
@@ -14,7 +15,8 @@ app.use(cors({
     credentials: true
 }));
 app.use(cookieParser());
-app.use('/auth', UserRouter); 
+app.use('/auth', AdminRouter ); 
+app.use('/add', UserRouter ); 
 
 mongoose.connect('mongodb://127.0.0.1:27017/AVnetworkDB');
 

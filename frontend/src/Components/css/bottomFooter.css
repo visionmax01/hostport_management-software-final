@@ -1,13 +1,13 @@
 .Footer_section{
     display:flex;
     background-color: #b3bf99;
-    border-top: 3px solid rgb(255, 217, 0) !important;
+    border-top: 3px solid rgb(255, 217, 0) ;
     width: 100%;
     height:max-content;
     justify-content: space-between;
 }
 .about_containt{
-    width:40% !important;
+    width:40% ;
     padding:20px;
     text-align: center;
 }
@@ -18,11 +18,11 @@
 }
 .about_containt p{
     text-align: justify;
-    color:#000063 !important;
+    color:#000063 ;
     font-size: 14px;
 }
 .links-section{
-    width:10%!important;
+    width:10%;
     margin-left: 2%;
 }
 .links-section h2{
@@ -31,15 +31,15 @@
 }
 .links-section ul li{
      text-align: left;
-    list-style: none !important;
-    color:rgb(3, 3, 102) !important;
+    list-style: none ;
+    color:rgb(3, 3, 102) ;
     font-size: 16px;
 
 }
 .links-section ul li a{
     text-decoration: none;
-    list-style: none !important;
-    color:rgb(3, 3, 102) !important;
+    list-style: none ;
+    color:rgb(3, 3, 102) ;
     font-size: 16px;
     text-align: left;
 }
@@ -54,7 +54,7 @@
 }
 
 .contact_containt{
-      width:40%!important;
+      width:40%;
       text-align: center;
       
 }
@@ -130,21 +130,25 @@
         display:flex;
         flex-direction: column;
         background-color: #b3bf99;
-        border-top: 3px solid rgb(255, 217, 0) !important;
+        border-top: 3px solid rgb(255, 217, 0) ;
         width: 100%;
         border-radius: 25px 25px 0px 0px;
         height:max-content;
         justify-content: space-between;
     }  
     .about_containt{
-        width:100% !important;
+        width:100% ;
         padding:1rem;
         text-align: center; 
     }
     .links-sections{
         display: flex;
-        gap: 50;
-
-
+        position: relative;
+    }
+    .links-section1{
+        align-self: flex-end;
+    }
+    .contact_containt{
+        width: 100vw;
     }
 }

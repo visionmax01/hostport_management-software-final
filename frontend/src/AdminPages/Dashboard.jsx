@@ -68,7 +68,7 @@ function Dashboard() {
                     </span>
                     &nbsp;&nbsp;
                     <span className="Number-Present">500</span>
-                    <p className="sub-title">TOTAL USER"S</p>
+                    <p className="sub-title">TOTAL USER'S</p>
                   </div>
                   <div className="Dashboard-card">
                     <span className="Icon_color">

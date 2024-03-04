@@ -6,11 +6,9 @@ import "./Support.css";
 function SupportPage() {
   return (
     <div className="background">
-      <div className="main-container">
-        {/* <div class="five-pointed-star"></div>
-            <div class="five-pointed-star2"></div> */}
+      <div className="main-container-support">
         <NavBar />
-        <div className="Main-Section">
+        <div className="Main-Section-support">
           <div className="left-side">
             <div className="check-container">
               <h1>
