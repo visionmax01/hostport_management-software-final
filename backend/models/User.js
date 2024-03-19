@@ -1,60 +1,46 @@
 import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
   fullName: {
-    type: String,
-    required: true,
+    type: string
   },
   email: {
-    type: String,
-    required: true,
-    unique: true,
+    type: string
   },
   phoneNo: {
-    type: String,
-    required: true,
+    type: string
   },
   gender: {
-    type: String,
-    required: true,
+    type: string
   },
   accountNo: {
-    type: String,
-    required: true,
+    type: string
   },
   password: {
-    type: String,
-    required: true,
-    maxlength: 8,
+    type: string
   },
   upackage: {
-    type: String,
-    required: true,
+    type: string
   },
   startDate: {
-    type: Date,
-    required: true,
+    type: string
   },
   endDate: {
-    type: Date,
-    required: true,
+    type: string
   },
   status: {
-    type: String,
-    required: true,
+    type: string
   },
   createdDate: {
-    type: Date,
-    required: true,
+    type: string
   },
   address: {
-    type: String,
-    required: true,
+    type: string
   },
   profilePic: {
-    type: String,
+    type: string
   },
   IdentitiDocument: {
-    type: String,
+    type: string
   },
 });
 

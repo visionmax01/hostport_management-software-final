@@ -173,6 +173,9 @@
     font-size: 16px;
     font-weight: 600;
     width: max-content;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .date-Label {
@@ -180,14 +183,12 @@
 }
 
 .date {
+    margin-left: -6px;
     color: #ffaa00;
     font-size: 25px;
     font-weight: 600;
     background-color: #5c5c44;
-    padding-right: 80px;
-    padding-left: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+
 }
 
 .date-time1 {

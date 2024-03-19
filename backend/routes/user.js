@@ -15,7 +15,7 @@ router.post('/add-user', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     
-    const newUser = new UserModel({ 
+    const newUser = new User({ 
       fullName, 
       email, 
       phoneNo, 

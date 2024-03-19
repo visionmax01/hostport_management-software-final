@@ -39,20 +39,6 @@ function BottomFooter() {
             </li>
           </ul>
         </div>
-        <div className="links-section1">
-          <h2>Support</h2>
-          <ul>
-            <li>
-              <a href="#">Home </a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Payments</a>
-            </li>
-          </ul>
-        </div>
         </div>
         <div className="contact_containt">
           <h2>+977-9819931223</h2>
@@ -61,6 +47,7 @@ function BottomFooter() {
             Saptari, Nepal.
           </p>
           <span>Social Media</span> <br />
+          <div className="socalIcon">
           <a href="#">
             <img className="footer-connect-icon" src={Gmail} alt="Icon" />
           </a>
@@ -76,6 +63,7 @@ function BottomFooter() {
           <a href="#">
             <img className="footer-connect-icon" src={Twitter} alt="Icon" />
           </a>
+          </div>
         </div>
       </div>
       <div className="lower-footer">

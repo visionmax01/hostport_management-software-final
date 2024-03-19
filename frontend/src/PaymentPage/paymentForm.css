@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.main_container-form{
+    width: 60vw;
+    height: auto;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    background-color: rgba(206, 206, 206, 0.381);
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+
+}
+.main_container-form h3{
+    color: #ffffff;
+    font-size: 23px;
+    letter-spacing: 3px;
+    background-color: black;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    width: 40%;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 4px;
+    margin-bottom: 8px;
+}
+.formSection{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.form-fields{
+    padding:30px 80px;
+}
+.form-fields h5{
+    text-align: center;
+    margin-bottom:30px;
+}
+.form-fields h5 span{
+    color: red;
+}
+.formGroop{
+    width: 45%;
+    margin-bottom: 25px;
+}
+.input-Formgroup i{
+    font-size: 18px;
+    padding: 9px ;
+    border-radius: 6px 0px 0px 6px;
+    background-color: #a6b2b6;
+}
+.formGroop label{
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: rgb(15, 15, 21);
+}
+.formInputField{
+    padding: 6px 10px 6px 15px;
+    border-radius: 0px 6px 6px 0px;
+    border-style: none;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    color: rgba(0, 0, 255, 0.566);
+    background-color: white;
+    width: 85%;
+    font-size: 16px;
+
+
+}
+.btnPayment{
+    margin-top: 10px;
+    border-style: none;
+    padding: 5px 15px 5px 15px;
+    background-color: rgb(0, 174, 14);
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-right: 50px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.btnPayment:hover{
+    background-color: black;
+    color: white;
+}
+

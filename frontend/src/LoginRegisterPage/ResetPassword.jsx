@@ -6,7 +6,7 @@ import "./login.css";
 import logo1 from "../img/login.png";
 import img2 from "../img/logo2.png";
 import LockIcon from "@mui/icons-material/Lock";
-import { Toaster, toast } from "react-hot-toast";
+import  toast  from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
 import img1 from "../img/Av_network-logo.png";
 
@@ -21,10 +21,10 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!password) {
-      toast.error("Please enter a password");
+      toast.error("Please enter a password", { className: "toastmsg" });
       return;
     } else if (password !== Cpassword) {
-      toast.error("Passwords do not match");
+      toast.error("Passwords do not match",{ className: "toastmsg" });
       return;
     }
 
@@ -32,7 +32,7 @@ const ResetPassword = () => {
 
     try {
       const response = await Axios.post(
-        `http://localhost:3000/auth/reset-password/${token}`,
+        `http://localhost:8000/auth/reset-password/${token}`,
         {
           password,
         }
@@ -41,7 +41,7 @@ const ResetPassword = () => {
       if (response.data.status) {
         setShowSuccessPopup(true);
       } else {
-        toast.error("Link Expired | Reset again...");
+        toast.error("Link Expired | Reset again...",{ className: "toastmsg" });
       }
     } catch (error) {
       console.error(error);
@@ -135,21 +135,7 @@ const ResetPassword = () => {
         </div>
         
       </div>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-        toastOptions={{
-          style: {
-            marginTop: "50px",
-            height: "auto",
-            padding: "5px 25px 5px 25px",
-            background: "white",
-            color: "red",
-            fontSize: "20px",
-            fontWeight: "900",
-          },
-        }}
-      />
+     
         {showSuccessPopup && (
         <div className="popup-overlay">
           <div className="popup">
@@ -159,7 +145,8 @@ const ResetPassword = () => {
                 X
               </button>
             </div>
-            <p>Reset Link Sent successfully!</p>
+            <center><span className="reset-popup-icon"><svg xmlns="http://www.w3.org/2000/svg" height="55" viewBox="0 -960 960 960" width="55"><path d="m344-60-76-128-144-32 14-148-98-112 98-112-14-148 144-32 76-128 136 58 136-58 76 128 144 32-14 148 98 112-98 112 14 148-144 32-76 128-136-58-136 58Zm34-102 102-44 104 44 56-96 110-26-10-112 74-84-74-86 10-112-110-24-58-96-102 44-104-44-56 96-110 24 10 112-74 86 74 84-10 114 110 24 58 96Zm102-318Zm-42 142 226-226-56-58-170 170-86-84-56 56 142 142Z"  fill="green"/></svg></span></center>
+            <p>Password Reset  successfully!</p>
             <button className="popup-btn" onClick={handlePopupClose}>
               Go to Login
             </button>

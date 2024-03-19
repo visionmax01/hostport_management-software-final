@@ -99,14 +99,17 @@ function Dashboard() {
                 <div className="container-bottom-main">
                   <div className="Search-Box-dash">
                     <span className="titel-text">DASHBOARD</span>
+                    <form>
                     <span className="search-containt">
                       <span className="search-field">
-                        <input type="text" placeholder="Search....." />
+                        <input type="text" placeholder="Search....." name="search" />
                       </span>
                       <button className="search-btn">
                         <SearchIcon />
                       </button>
                     </span>
+                    </form>
+                    
                   </div>
                   {/* serch result */}
                   <div className="search-resuld-box122"></div>

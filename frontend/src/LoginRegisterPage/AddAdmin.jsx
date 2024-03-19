@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import  '../LoginRegisterPage/register.css'
 import Sidenav from "../Components/Sidenav";
 import AdminNavBar from "../Components/AdminNavBar";
 import Box from "@mui/material/Box";
 import "../Components/css/dashboard.css";
+import { toast } from "react-hot-toast";
+
 
 const Register = () => {
   const [role, SetRole] = useState("");
@@ -12,15 +14,14 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!role || !username || !name || !email || !password) {
-      setMessage("All fields are required");
+      toast.error("All fields are required", { className: "toastmsg" });
       return;
     }
-    Axios.post("http://localhost:3000/auth/register", {
+    axios.post("http://localhost:8000/auth/register", {
       role,
       username,
       name,
@@ -29,11 +30,11 @@ const Register = () => {
     })
     .then(response => {
       console.log(response);
-      setMessage(response.data.message);
+      toast.success(response.data.message, { className: "toastmsg" });
     })
     .catch(err => {
       console.error(err);
-      setMessage("Registration failed. Please try again.");
+      toast.error("Registration failed. Please try again.");
     });
   };
 
@@ -79,7 +80,6 @@ const Register = () => {
         <label htmlFor="email">Email:</label>
         <input
           type="email"
-          autoComplete="off"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -89,13 +89,11 @@ const Register = () => {
           type="password"
           placeholder="********"
           onChange={(e) => setPassword(e.target.value)}
+
         />
 
         <button type="submit">Register</button>
         <br/>
-       <div>
-            {message && <p className="message-register">{message}</p>}
-       </div>
       </form>
     </div>
         </Box>

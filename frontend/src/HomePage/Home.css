@@ -1,3 +1,10 @@
+.mainBody{
+  width: 100vw;
+  height: auto;
+  display:contents;
+  flex-wrap: wrap;
+}
+
 /*  Section 1 overview page css   */
 .home-main-section1 {
   width: 100vw;
@@ -37,7 +44,7 @@
 }
 .network {
   font-size: 90px;
-  padding-left: 20px;
+  padding-left: 20px 0 0 0;
   color: blue;
   letter-spacing: 15px;
 }
@@ -74,7 +81,7 @@
   }
 }
 
-.offer {
+.offer-containt {
   width: 600px;
   height: 120px;
   margin-top: 20px;
@@ -86,6 +93,46 @@
   padding-left: 50px;
   box-shadow: 5px 10px 10px gray;
 }
+.offer-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.offers {
+  display: flex;
+  overflow: hidden;
+}
+
+.offer {
+  position: relative;
+  width: 85%;
+  height: 100%;
+  background-color: transparent;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.left-button,
+.right-button {
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.left-button:focus,
+.right-button:focus {
+  outline: none;
+}
+
 .join-btn {
   margin-top: 25px;
   font-size: 25px;
@@ -112,31 +159,22 @@
 }
 .btn-join {
   font-size: 20px;
-  padding: 8px 10px;
+  padding: 8px 25px;
   font-weight: 900;
-  color: rgba(137, 71, 1, 0.827);
+  color: #ffffffd3;
   margin-left: 25%;
   border-style: none;
-  background-color: rgb(51, 191, 246);
+  background-color: #02a6f1;
   border-radius: 5px;
-  box-shadow: 3px 3px 3px green;
   margin-bottom: 30px;
-  width: 150px;
   transition: all ease-in-out 0.5s;
   cursor: pointer;
 }
 .btn-join:hover {
-  scale: 1.2;
-  font-size: 20px;
-  padding: 8px 10px;
-  font-weight: 900;
-  color: #000dffc5;
-  border-style: none;
-  background-color: #ffbb00;
-  border-radius: 5px;
-  box-shadow: 3px 3px 3px rgb(128, 34, 0);
-  margin-bottom: 30px;
-  width: 150px;
+  padding: 8px 25px;
+  background-color: #0276ab;
+  color: rgb(255, 187, 0);
+
 }
 
 .background-container {
@@ -209,7 +247,7 @@
   height: 300px;
   text-align: center;
   border-radius: 20px;
-  transition: all ease-in-out 0.5s;
+  transition: all 0.5s  ease-in-out;
 }
 .package-card-right {
   padding: 10px;
@@ -395,9 +433,12 @@ color: rgb(0, 255, 0);
 .left-side-img1 {
   width: 100%;
   height: 400px;
+  object-position:initial;
+
 }
 .right-side-img2 {
   width: 100%;
+  object-fit: cover;
   height: 400px;
 }
 
@@ -465,6 +506,162 @@ img {
   }
 }
 
+/* popup form for book / Order */
+/* CSS for the popup form animation */
+.formpopup {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1000;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}
+
+/* Adding fadeOut animation for closing the popup */
+.formpopup.fadeOut {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+}
+
+
+
+
+.BookNowForm{
+  position: fixed;
+  display: flex;
+  margin-top: 80px;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1000;
+}
+
+.BookNowForm form{
+  width: auto;
+  display: none;
+  height: auto;
+  position: relative;
+  padding: 25px;
+  border-radius: 12px;
+  background: rgb(255, 255, 255);
+  box-shadow: 3px 3px 20px rgba(3, 0, 65, 0.397);
+
+}
+.btn-join-popup-close{
+  position: absolute;
+  top:0;
+  right: 0;
+  background-color: black;
+  color: white;
+  padding: 6px 12px;
+  border-style: none;
+  font-weight: 900;
+  border-top-right-radius: 8px;
+}
+.btn-join-popup-close:hover{
+  color:red;
+}
+.BookNowForm form h1{
+  text-align: center;
+  font-size: 25px;
+  color: #000268;
+  font-weight: 900;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+.BookNowForm form p{
+  text-align: center;
+  font-size: 15px;
+  background-color: rgba(0, 0, 255, 0.301);
+  color: #000268;
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-transform: uppercase;
+}
+.BookNowForm form label{
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(1, 1, 93);
+}
+.form-popup-icons{
+  background-color: #00232d59;
+  padding: 3px 5px 7px 5px;
+  color: rgb(0, 0, 0);
+  border-radius: 4px 0px 0px 4px;
+
+
+}
+.form-popup-notic{
+  color: red;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.input-popup{
+  width: 250px;
+  border-radius:0px 4px 4px 0px;
+  border-style: none;
+  padding: 4px 8px 4px 8px;
+  font-size: 16px;
+  outline-color: red;
+  color: darkblue;
+  font-weight: 600;
+  font-family:monospace;
+  background-color: #0002681e;
+}
+.form-section{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  gap: 25px;
+}
+
+.btn-join-popup{
+  margin-top: 20px;
+  border-style: none;
+  padding: 5px 15px 5px 15px;
+  background-color: rgb(0, 174, 14);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 50px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+}
+.btn-join-popup:hover{
+  background-color: black;
+  color: white;
+}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev,

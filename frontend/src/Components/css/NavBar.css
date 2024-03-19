@@ -8,13 +8,6 @@ h1 {
   color: red;
 }
 
-.main-logo-nav{
-  width: 250px;
-  height: 35px;
-  margin-left: 30px;
-  margin-top: 3px;
-  cursor: pointer;
-}
 
 .App-header .Main_logo {
   width: 35px !important;
@@ -33,7 +26,20 @@ h1 {
   justify-content: space-between;
   align-items: center;
 }
-
+.container-fluid{
+  height: 100%;
+}
+.logo-navbar{
+  height: 100%;
+  position: relative;
+}
+.main-logo-nav{
+  width: 250px;
+  position: relative;
+  height: 35px;
+  margin-left: 30px;
+  cursor: pointer;
+}
 .App-header nav ul {
   display: flex;
   list-style: none;
@@ -43,6 +49,8 @@ h1 {
 
 .App-header nav ul li {
   margin-right: 35px !important;
+  background-color: transparent;
+
 }
 
 .App-header nav ul li a {
@@ -53,6 +61,12 @@ h1 {
 
 .App-header nav ul li a:hover {
   color: rgb(255, 200, 0) !important;
+}
+
+
+.nav-item.active a {
+  color: rgb(255, 200, 0) ; 
+  background-color: transparent;
 }
 
 .loginbtn {
@@ -76,7 +90,9 @@ h1 {
 .container h1 {
   color: red;
 }
-
+.profile-img-user{
+  height: 100%;
+}
 /* Media Query for Mobile Screens */
 @media screen and (max-width: 768px) {
   .logo-navbar{

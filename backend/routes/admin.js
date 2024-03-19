@@ -5,6 +5,7 @@ import { Admin } from "../models/Admin.js";
 import jwt from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 
+
 const router = express.Router();
 
 
@@ -30,7 +31,12 @@ router.post('/register', async (req, res) => {
     }
     
     const hashedPassword = await bcryt.hash(password, 10);
-    const newAdmin = new Admin({role, name, username, email, password: hashedPassword });
+    const newAdmin = new Admin({
+      role,
+      name, 
+      username, 
+      email, 
+      password: hashedPassword });
     await newAdmin.save();
     return res.json({ message: "Admin created successfully" });
   } catch (error) {
@@ -68,6 +74,8 @@ router.post('/forget-password', async (req, res) => {
     if (!admin) {
       return res.json({ message: "user not found" })
     }
+    
+     
     const token = jwt.sign({id: admin._id }, process.env.KEY, { expiresIn: '5m' })
     var transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -77,11 +85,31 @@ router.post('/forget-password', async (req, res) => {
       }
     });
     const encodedToken = encodeURIComponent(token).replace(/\./g, "%2E");
+    const resetLink = `http://localhost:5173/reset-password/` + encodedToken;
+    const emailContent = `
+      <html>
+      <head>
+        <style>
+          /* Add any CSS styles here */
+        </style>
+      </head>
+      <body>
+        <div>
+          <div><h1>Av Network Pvt.Ltd</h1></div>
+          <h2>Reset Password</h2>
+          <p>Dear User,</p>
+          <p>We received a request to reset your password. Click the button below to reset your Password:</p>
+          <a href="${resetLink}" style="background-color: #4CAF50; color: white; padding: 15px 25px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px;">Reset Password</a>
+          <p>If you didn't request a password reset, you can ignore this email.</p>
+        </div>
+      </body>
+      </html>
+    `;
     var mailOptions = {
       from: 'bhishansah@gmail.com',
       to: email,
       subject: 'Reset Password',
-      text: 'Click this link to reset your password: http://localhost:5173/reset-password/' + encodedToken
+      html: emailContent
 
     };
 

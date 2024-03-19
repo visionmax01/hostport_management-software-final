@@ -1,0 +1,45 @@
+import Complaint from "../model/reqsupportModel.js";
+import { v4 as uuidv4 } from 'uuid';
+
+export const createSupport = async (req, res) => {
+    const {
+        fullname,
+        accountNo,
+        reason,
+        message,
+        timestamp
+    } = req.body;
+
+    try {
+        // Generate a unique complaint number (8 digits)
+        const complaintNumber = generateComplaintNumber();
+
+        // Create a new complaint
+        const complaintData = new Complaint({
+            fullname,
+            accountNo,
+            reason,
+            message,
+            complaintNumber,
+            timestamp
+        });
+
+        await complaintData.save();
+        return res.json({ msg: "Complaint registered successfully", complaintNumber });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Function to generate a complaint number (8 digits)
+function generateComplaintNumber() {
+    const digits = 8;
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < digits; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}

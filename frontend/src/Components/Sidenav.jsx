@@ -21,6 +21,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import { NavLink } from "react-router-dom";
 import "../Components/css/sidenav.css";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+import SavingsIcon from '@mui/icons-material/Savings'; 
 
 const drawerWidth = 240;
 
@@ -70,6 +71,24 @@ const Drawer = styled(MuiDrawer, {
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
+
+const SidenavName = styled("div")({
+  position: "absolute",
+  bottom: 0,
+  left: 0,
+  right: 0,
+  height: 56, // Adjust height as needed
+  backgroundColor: "#333", // Adjust background color as needed
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "all 0.3s ease",
+  overflow: "hidden",
+  whiteSpace: "nowrap",
+  "&:hover": {
+    height: "100%", // Expand height on hover
+  },
+});
 
 export default function MiniDrawer() {
   const theme = useTheme();
@@ -255,6 +274,10 @@ export default function MiniDrawer() {
             </ListItemButton>
           </ListItem>
 
+
+          
+
+
           <ListItem
             disablePadding
             sx={{ display: "block" }}
@@ -290,7 +313,7 @@ export default function MiniDrawer() {
             disablePadding
             sx={{ display: "block" }}
             component={NavLink}
-            to="/register"
+            to="/create-admin"
             className="hoverinfo"
             activeClassName="active"
           >

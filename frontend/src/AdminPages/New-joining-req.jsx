@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sidenav from "../Components/Sidenav";
 import Box from "@mui/material/Box";
 import AdminNavBar from "../Components/AdminNavBar";
-import "./css/manage-user.css";
+import "../AdminPages/css/manage-user.css";
 import "./css/btn.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
-import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
+import { Link } from "react-router-dom";
 function NewRequest() {
-  const Navigate = useNavigate();
+//fatching all new request data form api
+const [newUsers, setNewUser] = useState([]);
+
+  useEffect(() => {
+    const fetchNewUserData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/getAllJoinRequest");
+        setNewUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchNewUserData();
+  }, []);
+  const formatDate = (dateString) => {
+    const dateObject = new Date(dateString);
+    return dateObject.toLocaleDateString("en-GB");
+    // Use "en-US" if you prefer "mm/dd/yyyy" format
+  };
   return (
     <>
       <AdminNavBar />
@@ -40,43 +58,41 @@ function NewRequest() {
               <div className="table-container">
                 <div class="table-responsive">
                   <table className="table-data-display">
-                    <thead>
+                    <thead className="table-head ">
                       <tr>
                         <th>S.N</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>phone No</th>
                         <th>Date Of joining</th>
                         <th>Package Detail</th>
-                        <th>Payment Recipt</th>
                         <th>Take Action*</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr id="table-bg-id" className="tabletr-value">
-                        <td>1</td>
-                        <td>Bhishan prasad sah</td>
-                        <td>bhishansah@gmail.com</td>
-                        <td>2024-05-15</td>
-                        <td>1Mbps - 1Month</td>
-                        <td>
-                          <img src="" />
-                          payment.png
-                        </td>
-                        <td>
-                          <button className="animation-key btn-join-formActivate"
-                          onClick={() => {
-                            Navigate("/user-activation");
-                          }}
-                          >
-                            
-                            <ManageHistoryIcon />
-                            
-                          </button>
-                          <button className="animation-key btn-join-formDelete">
-                            <DeleteIcon />
-                          </button>
-                        </td>
-                      </tr>
+
+                      {
+                        newUsers.map((newuser, index) => (
+                          <tr key={newuser._id} id="table-bg-id" className="tabletr-value">
+                          <td>{index + 1}</td>
+                          <td>{newuser.fullname}</td>
+                          <td>{newuser.email}</td>
+                          <td>{newuser.phoneNo}</td>
+                          <td>{formatDate(newuser.createdDate)}</td>
+                          <td>{newuser.packageDetail}</td>
+                          
+                          <td>
+                            <Link to={`/activate-user-account/${newuser._id}`} className="btn-action-edit" >
+                              <ManageHistoryIcon /> 
+                            </Link>
+                            <button className="btn-action-delete">
+                              <DeleteIcon />
+                            </button>
+                          </td>
+                        </tr>
+                        ))
+                      }
+                      
                     </tbody>
                   </table>
                 </div>

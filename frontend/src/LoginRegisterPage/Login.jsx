@@ -1,43 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../Components/NavBar";
 import { Link } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
-import { Toaster, toast } from "react-hot-toast";
+import toast from "react-hot-toast";
 import LockIcon from "@mui/icons-material/Lock";
-
+import NavBar from "../Components/NavBar";
+import "./login.css";
 import logo1 from "../img/login.png";
 import img2 from "../img/logo2.png";
-const Login1 = () => {
+
+const Login1 = ({ setAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const Naviagte = useNavigate();
-  Axios.defaults.withCredentials = true;
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email) {
-      toast.error("Please enter an email");
-      return;
-    } else if (!password) {
-      toast.error("Please enter a password");
-      return;
-    }
-    Axios.post("http://localhost:3000/auth/login", {
-      email,
-      password,
+  const navigate = useNavigate();
+
+  // Login function
+const handleSubmit = (e) => {
+  e.preventDefault();
+  if (!email || !password) {
+    toast.error("Please enter both email and password");
+    return;
+  }
+
+  Axios.post("http://localhost:8000/auth/login-admin", {
+    email,
+    password,
+  })
+    .then((response) => {
+      if (response.data.status) {
+        localStorage.setItem("token", response.data.token); // Storing token
+        setAuthenticated(true);
+        navigate("/admin-dashboard");
+        toast.success("Login Successfully", { className: "toastmsg" });
+      } else {
+        toast.error(response.data.msg);
+      }
     })
-      .then((response) => {
-        toast.error("Enter a valid email and password");
-        if (response.data.status) {
-          Naviagte("/admin-dashboard");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        setMessage("Server Not Responding");
-      });
-  };
+    .catch((err) => {
+      console.error(err);
+      toast.error("Server Not Responding");
+    });
+};
+
+// Logout function
+const handleLogout = () => {
+  axios.post("http://localhost:8000/auth/logout", {}, { withCredentials: true })
+    .then((res) => {
+      if (res.data.status) {
+        // Remove token from local storage
+        localStorage.removeItem("token");
+        setAuthenticated(false); // Set authenticated state to false
+        navigate("/login");
+        toast.success(res.data.msg, { className: "toastmsg" });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
   return (
     <div className="main-container-one">
       <NavBar />
@@ -65,80 +87,68 @@ const Login1 = () => {
             <div className="dot1-move"></div>
             <div className="dot2-move"></div>
           </div>
-      
-            <div className="login-detail-container">  
-                <div className="login-containt-container">
-                <div className="login-icon">
-                  <center>
-                    <img src={logo1} alt=""></img>
-                  </center>
-                </div>
-                <div className="login-field">
-                  <h1>Login</h1>
-                  <form onSubmit={handleSubmit}>
-                    <label className="Form-label" htmlFor="email">
-                      Email:
-                    </label>
-                    <div className="input-icon-section">
-                      <span className="input-icon-user">
-                        <PersonIcon />
-                      </span>
-                      <input
-                        className="Form-input"
-                        type="email"
-                        autoComplete="off"
-                        placeholder="Email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        autoFocus
-                      />
-                    </div>
 
-                    <label className="Form-label" htmlFor="password">
-                      Password:
-                    </label>
-                    <div className="input-icon-section">
-                      <span className="input-icon-user">
-                        <LockIcon />
-                      </span>
-                      <input
-                        className="Form-input"
-                        type="password"
-                        placeholder="********"
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
-                    <button type="submit" className="btn-btnLFRF btn-primary">
-                      Login
-                    </button>
-                    <span className="Forget-link">
-                      <Link
-                        className="link-for-forgertxt"
-                        to="/forget-password"
-                      >
-                        Forget Password ?
-                      </Link>
+          <div className="login-detail-container">
+            <div className="login-containt-container">
+              <div className="login-icon">
+                <center>
+                  <img src={logo1} alt=""></img>
+                </center>
+              </div>
+              <div className="login-field">
+                <h1>Login</h1>
+                <form onSubmit={handleSubmit}>
+                  <label className="Form-label" htmlFor="email">
+                    Email:
+                  </label>
+                  <div className="input-icon-section">
+                    <span className="input-icon-user">
+                      <PersonIcon />
                     </span>
-                  </form>
-                </div>
-                </div>
+                    <input
+                      className="Form-input"
+                      type="email"
+                      autoComplete="off"
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      autoFocus
+                    />
+                  </div>
+
+                  <label className="Form-label" htmlFor="password">
+                    Password:
+                  </label>
+                  <div className="input-icon-section">
+                    <span className="input-icon-user">
+                      <LockIcon />
+                    </span>
+                    <input
+                      className="Form-input"
+                      type="password"
+                      placeholder="********"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn-btnLFRF btn-primary"
+                  >
+                    Login
+                  </button>
+                  <span className="Forget-link">
+                    <Link
+                      className="link-for-forgertxt"
+                      to="/forget-password"
+                    >
+                      Forget Password ?
+                    </Link>
+                  </span>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
       </div>
-      <Toaster
-          position="top-right"
-          reverseOrder={false}
-          toastOptions={{
-            style: {
-              marginTop: "50px",
-              height: "auto",
-              padding: "5px 25px 5px 25px",
-              background: "white",
-              color: "red",
-              fontSize: "20px",
-              fontWeight: "900",
-            },
-          }}
-        />
     </div>
   );
 };

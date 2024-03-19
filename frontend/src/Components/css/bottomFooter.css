@@ -71,7 +71,7 @@
     margin-top: 10px;
     width:30px;
     height: 30px;
-     margin-right: 15px;
+    margin-right: 15px;
 }
 .lower-footer{
     width: 100%;
@@ -82,6 +82,11 @@
    
  
     
+}
+.socalIcon{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
 }
 .left-field{
     width:50% !important;

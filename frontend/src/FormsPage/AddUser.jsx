@@ -1,58 +1,95 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AdminNavBar from "../Components/AdminNavBar";
 import Sidenav from "../Components/Sidenav";
 import Box from "@mui/material/Box";
-import Axios from "axios";
 import "./all-form.css";
+import '../AdminPages/css/toast.css';
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
-  const [gender, setGender] = useState("");
-  const [accountNo, setAccountNo] = useState("");
-  const [password, setPassword] = useState("");
-  const [upackage, setPackage] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [status, setStatus] = useState("");
-  const [createdDate, setCreatedDate] = useState("");
-  const [address, setAddress] = useState("");
-  const [profilePic, setProfilePic] = useState("");
-  const [identitiDocument, setIdentitiDocument] = useState("");
-  const [message, setMessage] = useState("");
+  const [user, setUser] = useState({
+    fullname: "",
+    email: "",
+    phoneNo: "",
+    gender: "",
+    password: "",
+    packageDetail: "",
+    startedDate: "",
+    endedDate: "",
+    accountStatus: "",
+    address: "",
+    profilePhoto: null,
+    documentProof: null,
+    createdDate: ""
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!fullName || !email || !password) {
-      setMessage("All fields are required");
-      return;
+  const navigate = useNavigate();
+
+  const inputHandler = (e) => {
+    const { name, files } = e.target;
+    if (name === "profilePhoto" || name === "documentProof") {
+      setUser({ ...user, [name]: files[0] });
+    } else {
+      setUser({ ...user, [name]: e.target.value });
     }
-    Axios.post("http://localhost:3000/auth/add-user", {
-      fullName,
-      email,
-      phoneNo,
-      gender,
-      accountNo,
-      password,
-      upackage,
-      startDate,
-      endDate,
-      status,
-      createdDate,
-      address,
-      profilePic,
-      identitiDocument,
-    })
-      .then((response) => {
-        console.log(response);
-        setMessage(response.data.message);
-      })
-      .catch((err) => {
-        console.error(err);
-        setMessage("Registration failed. Please try again.");
-      });
   };
+
+  const submitUserForm = async (e) => {
+    e.preventDefault();
+      
+    try {
+      const formData = new FormData();
+      for (const key in user) {
+        if (user.hasOwnProperty(key)) {
+          if (key === 'profilePhoto' || key === 'documentProof') {
+            formData.append(key, user[key]);
+          } else if (key === 'startedDate' || key === 'createdDate') {
+            formData.append(key, new Date(user[key]).toISOString());
+          } else {
+            formData.append(key, user[key]);
+          }
+        }
+      }
+  
+      const response = await axios.post("http://localhost:8000/api/createUser", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+  
+      toast.success(response.data.message, { className: "toastmsg" });
+      navigate('/manage-user');
+    } catch (error) {
+      console.error(error);
+      if (error.response && error.response.status === 400 && error.response.data.error === "Email already exists") {
+        toast.error("Email already exists", { className: "toastmsg" });
+      } else {
+        toast.error("An error occurred. Please try again.", { className: "toastmsg" });
+      }
+    }
+  };
+  
+  // Function to get today's date in the format YYYY-MM-DD
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  // Set initial value for startedDate and createdDate fields
+  useEffect(() => {
+    setUser(prevState => ({
+      ...prevState,
+      startedDate: getTodayDate(),
+      createdDate: getTodayDate()
+    }));
+  }, []);
+
+
   return (
     <>
       <AdminNavBar />
@@ -66,20 +103,26 @@ const AddUser = () => {
               <h1>Create new User Account</h1>
             </div>
             <div className="inside-bottom-container">
-              <form action="" onSubmit={handleSubmit}>
+              <form onSubmit={submitUserForm} encType="multipart/form-data">
                 <div className="form-group1">
+
+
                   <div className="label-text-ares">
-                    <label htmlFor="Fullname">
+                    <label htmlFor="fullname">
                       Full Name<span className="required-field-star">*</span>
                     </label>
                     
                     <input 
-                    id="Fullname"
+                    id="fullname"
+                    name="fullname"
                     type="text"
-                     className="form-control-input"
-                     onChange={(e) => setFullName(e.target.value)}
+                    className="form-control-input"
+                        onChange={inputHandler}
+                        autoComplete="off"
                      />
                   </div>
+
+
                   <div className="label-text-ares">
                     <label htmlFor="email">
                       Email <span className="required-field-star">*</span>
@@ -87,11 +130,14 @@ const AddUser = () => {
                     <input
                       className="form-control-input"
                       type="email"
+                      name="email"
+                      id="email"
                       autoComplete="off"
-                      placeholder="Email"
-                      onChange={(e) => setEmail(e.target.value)}
+                        onChange={inputHandler}
+                        placeholder="Email"
                     />
                   </div>
+
 
                   <div className="label-text-ares">
                     <label htmlFor="phoneNo">
@@ -106,38 +152,49 @@ const AddUser = () => {
                       />
                       <input
                         type="text"
+                        name="phoneNo"
+                        id="phoneNo"
+                        autoComplete="off"
                         className="form-control-phone"
+                        onChange={inputHandler}
                         placeholder="Enter phone no "
-                        onChange={(e) => setPhoneNo(e.target.value)}
                       />
                     </div>
                   </div>
+
+
                 </div>
                 <br />
+
+
                 <div className="form-group1">
                   <div className="label-text-ares">
                     <label htmlFor="gender">
                       Gender<span className="required-field-star">*</span>
                     </label>
                     <select
-                      className="form-control-option"
-                      name="gender"
-                      id="gender"
-                      onChange={(e) => setGender(e.target.value)}
+                        className="form-control-option"
+                        name="gender"
+                        id="gender"
+                        onChange={inputHandler}
+                        autoComplete="off"
                     >
+                      <option value="null">Chose your Gender</option>
                       <option value="male">Male</option>
                       <option value="Female">Female</option>
                     </select>
                   </div>
                   <div className="label-text-ares">
-                    <label htmlFor="account">
-                      Account No <span className="required-field-star">*</span>
+                  <label htmlFor="address">
+                      Address<span className="required-field-star">*</span>
                     </label>
                     <input
-                    id="account"
+                      id="address"
+                      name="address"
+                      autoComplete="off"
                       type="text"
-                      className="form-control-input"
-                      onChange={(e) => setAccountNo(e.target.value)}
+                        onChange={inputHandler}
+                        className="form-control-date"
                     />
                   </div>
                   <div className="label-text-ares">
@@ -146,10 +203,13 @@ const AddUser = () => {
                     </label>
                     <div className="phone-text-ares">
                       <input
+                        name="password"
+                        id="password"
+                        autoComplete="off"
                         type="password"
                         className="form-control-input"
+                        onChange={inputHandler}
                         placeholder="*************"
-                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                   </div>
@@ -157,45 +217,53 @@ const AddUser = () => {
                 <br />
                 <div className="form-group1">
                   <div className="label-text-ares">
-                    <label htmlFor="package">
+                    <label htmlFor="packageDetail">
                       Select Package
                       <span className="required-field-star">*</span>
                     </label>
                     <select
-                      id="package"
+                      id="packageDetail"
+                      name="packageDetail"
                       type="text"
-                      className="form-control-option"
-                      onChange={(e) => setPackage(e.target.value)}
+                      autoComplete="off"
+                        onChange={inputHandler}
+                        className="form-control-option"
                     >
-                      <option value="Male">1Mbps-1Month/Rs.300</option>
-                      <option value="Male">1Mbps-1Month/Rs.300</option>
+                      <option value="null">Chose your package</option>
+                      <option value="1Mbps-1Month/Rs.300">1Mbps-1Month/Rs.300</option>
+                      <option value="1Mbps-3Month/Rs.900" >1Mbps-3Month/Rs.900</option>
                       <option value="Male">1Mbps-1Month/Rs.300</option>
                       <option value="Male">1Mbps-1Month/Rs.300</option>
                       <option value="Male">1Mbps-1Month/Rs.300</option>
                     </select>
                   </div>
                   <div className="label-text-ares">
-                    <label htmlFor="date1">
+                    <label htmlFor="startedDate">
                       Started From<span className="required-field-star">*</span>
                     </label>
                     <input
-                    id="date1"
+                      id="startedDate"
+                        value={user.startedDate}
+                        name="startedDate"
                       type="date"
-                      className="form-control-date"
-                      onChange={(e) => setStartDate(e.target.value)}
+                      autoComplete="off"
+                        onChange={inputHandler}
+                        className="form-control-date"
                     />
                   </div>
 
                   <div className="label-text-ares">
-                    <label htmlFor="date2">
+                    <label htmlFor="endedDate">
                       Ended To<span className="required-field-star">*</span>
                     </label>
                     <div className="phone-text-ares">
                       <input
-                      id="date2"
+                        id="endedDate"
+                        name="endedDate"
+                        autoComplete="off "
                         type="date"
+                        onChange={inputHandler}
                         className="form-control-date"
-                        onChange={(e) => setEndDate(e.target.value)}
                       />
                     </div>
                   </div>
@@ -203,82 +271,75 @@ const AddUser = () => {
                 <br />
                 <div className="form-group1">
                   <div className="label-text-ares">
-                    <label htmlFor="ststus">
+                    <label htmlFor="accountStatus">
                       Account Status
                       <span className="required-field-star">*</span>
                     </label>
                     <select
                       className="form-control-option"
-                      name="status"
+                      name="accountStatus"
                       type="text"
-                      id="status"
-                      onChange={(e) => setStatus(e.target.value)}
+                      id="accountStatus"
+                        onChange={inputHandler}
+                        autoComplete="off"
                     >
+                      <option value="Active">Chose your Status</option>
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>
                   </div>
                   <div className="label-text-ares">
-                    <label htmlFor="date3">
+                    <label htmlFor="createdDate">
                       Created Date<span className="required-field-star">*</span>
                     </label>
                     <input
-                      id="date3"
+                      id="createdDate"
+                      name="createdDate"
+                      autoComplete="off"
+                      value={user.createdDate}
                       type="date"
-                      className="form-control-date"
-                      onChange={(e) => setCreatedDate(e.target.value)}
+                        onChange={inputHandler}
+                        className="form-control-date"
                     />
                   </div>
                   <div className="label-text-ares">
-                    <label htmlFor="address">
-                      Address<span className="required-field-star">*</span>
-                    </label>
-                    <input
-                      id="address"
-                      type="text"
-                      className="form-control-date"
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
+                  <label htmlFor="profilePhoto">Profile Photo</label>
+                    <div className="phone-text-ares">
+                      <input
+                        id="profilePhoto"
+                        name="profilePhoto"
+                        autoComplete="off"
+                        onChange={inputHandler}
+                        type="file"
+                      />
+                    </div>
                   </div>
                 </div>
                 <br />
 
                 <div className="form-group1">
+                  
                   <div className="label-text-ares">
-                    <label htmlFor="photo1">Profile Photo</label>
+                    <label htmlFor="documentProof">citizenship copy</label>
                     <div className="phone-text-ares">
                       <input
-                      id="photo1"
-                        type="file"
-                        onChange={(e) => setProfilePic(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="label-text-ares">
-                    <label htmlFor="photo2">citizenship copy</label>
-                    <div className="phone-text-ares">
-                      <input
-                        id="photo2"
+                        id="documentProof"
+                        name="documentProof"
+                        autoComplete="off"
                         type="file"
                         placeholder="chose File"
-                        onChange={(e) => setIdentitiDocument(e.target.value)}
+                        onChange={inputHandler}
                       />
                     </div>
                   </div>
-                  <div className="label-text-ares">
-                    <div className="phone-text-ares">
-                      <div className="class-upload1"></div>
-                    </div>
-                  </div>
+             
+                  
                 </div>
                 <br />
-
-               
                   <button type="submit" className="btn-form-summit">
                     Create User
                   </button>
                 <div>
-                  {message && <p className="message-register">{message}</p>}
                 </div>
               </form>
             </div>
