@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../Components/NavBar";
 import BottomFooter from "../Components/BottomFooter";
+import PopupForm from "../PaymentPage/payment_form"; // Import the PopupForm component
 import "./paymentpage.css";
 
 /*images */
@@ -9,13 +10,22 @@ import Qr2 from "../img/imepayQR.png";
 import Qr3 from "../img/khaltiQr.png";
 
 function PaymentPage() {
+  const [showPopupForm, setShowPopupForm] = useState(false); 
+
+  const togglePopupForm = () => {
+    setShowPopupForm(!showPopupForm);
+  };
+
+  const closePopupForm = () => {
+    setShowPopupForm(false);
+  };
   return (
     <div className="body-container">
       <div className="main-container">
         <NavBar />
         <div className="Heading">
           {" "}
-          <h2 >“Scan Any Qr To Make Payment”</h2>
+          <h2>“Scan Any Qr To Make Payment”</h2>
         </div>
 
         <div className="QR-Main-Cobtainer">
@@ -40,8 +50,11 @@ function PaymentPage() {
           To Continue Your Service.
         </p>
         <center>
-          <button className="paymrntForm-btn">Payment Form</button>
+          <button className="paymrntForm-btn" onClick={togglePopupForm}>
+            Payment Form
+          </button>
         </center>
+        {showPopupForm && <PopupForm  onClose={closePopupForm} />}
       </div>
       <BottomFooter />
     </div>

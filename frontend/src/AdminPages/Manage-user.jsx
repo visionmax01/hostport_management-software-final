@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidenav from "../Components/Sidenav";
 import Box from "@mui/material/Box";
 import AdminNavBar from "../Components/AdminNavBar";
-import "./css/manage-user.css";
+import "./css/manageuser/manage-user.css";
 import "./css/btn.css";
 import axios from "axios";
 import PDFComponent from "../Components/downloadfile/PDFGenerator";
@@ -126,7 +126,7 @@ function ManageUser() {
                           <td>{formatDate(user.endedDate)}</td>
                           <td>
                             {calculateRemainingDays(user.endedDate) === 0
-                              ? "Account Inactive"
+                              ? "Inactive"
                               : user.accountStatus}
                           </td>
                           <td>

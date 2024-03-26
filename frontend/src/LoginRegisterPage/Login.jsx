@@ -15,33 +15,39 @@ const Login1 = ({ setAuthenticated }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  // Login function
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if (!email || !password) {
-    toast.error("Please enter both email and password");
-    return;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return toast.error("please enter email & password!",{ className: "toastmsg" });
+    }
+    try {
+      const response = await Axios.post("http://localhost:8000/auth/login-admin", {
+        email,
+        password,
+      });
 
-  Axios.post("http://localhost:8000/auth/login-admin", {
-    email,
-    password,
-  })
-    .then((response) => {
       if (response.data.status) {
-        localStorage.setItem("token", response.data.token); // Storing token
+        localStorage.setItem("token", response.data.token); // Token storage
         setAuthenticated(true);
         navigate("/admin-dashboard");
-        toast.success("Login Successfully", { className: "toastmsg" });
+        toast.success("login Successfully",{ className: "toastmsg" });
       } else {
-        toast.error(response.data.msg);
+        if (response.data.message === "Enter valid email and password",{ className: "toastmsg" }) {
+          toast.error("Email is incorrect or invalid",{ className: "toastmsg" });
+        } else if (response.data.message === "Admin not found") {
+          toast.error("Email is incorrect", { className: "toastmsg" });
+        } else if (response.data.msg === "Enter Password is Incorrect!", { className: "toastmsg" }) {
+          toast.error("Password is incorrect",{ className: "toastmsg" });
+        } else {
+          toast.error("Login failed",{ className: "toastmsg" });
+        }
       }
-    })
-    .catch((err) => {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       toast.error("Server Not Responding");
-    });
-};
+    }
+  };
+
 
 // Logout function
 const handleLogout = () => {

@@ -3,6 +3,8 @@ import Sidenav from "../Components/Sidenav";
 import Box from "@mui/material/Box";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import AdminNavBar from "../Components/AdminNavBar";
+import "./css/manageuser/manage-user.css";
+
 
 function PaymentDetail() {
   return (
@@ -24,11 +26,7 @@ function PaymentDetail() {
                   </span>
                   <button className="search-btn-style">Search</button>
                 </div>
-                <div className="action-btn">
-                  <b>Print Data</b> &nbsp;&nbsp;&nbsp;
-                  <button className="btn-action-pdf">Pdf</button>
-                  <button className="btn-action-svg">Svg</button>
-                </div>
+                
               </div>
             </div>
             <div className="table-data-container">

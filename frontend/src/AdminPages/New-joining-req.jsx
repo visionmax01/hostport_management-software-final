@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidenav from "../Components/Sidenav";
 import Box from "@mui/material/Box";
 import AdminNavBar from "../Components/AdminNavBar";
-import "../AdminPages/css/manage-user.css";
+import "./css/manageuser/manage-user.css";
 import "./css/btn.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
@@ -47,11 +47,7 @@ const [newUsers, setNewUser] = useState([]);
                   </span>
                   <button className="search-btn-style">Search</button>
                 </div>
-                <div className="action-btn">
-                  <b>Print Data</b> &nbsp;&nbsp;&nbsp;
-                  <button className="btn-action-pdf">Pdf</button>
-                  <button className="btn-action-svg">Svg</button>
-                </div>
+                
               </div>
             </div>
             <div className="table-data-container">

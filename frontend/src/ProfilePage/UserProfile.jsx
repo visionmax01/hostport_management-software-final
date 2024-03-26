@@ -65,16 +65,15 @@ function UserProfile() {
     const remainingDays = Math.abs(new Date(user.endedDate) - new Date()) / (1000 * 60 * 60 * 24);
     const percent = (remainingDays / totalDays) * 100;
     if (percent <= 25) {
-      return "red"; // Red if less than or equal to 25%
+      return "red"; 
     } else {
-      return "blue"; // Blue otherwise
+      return "blue"; 
     }
   };
 
   const formatDate = (dateString) => {
     const dateObject = new Date(dateString);
     return dateObject.toLocaleDateString("en-GB");
-    // Use "en-US" if you prefer "mm/dd/yyyy" format
   };
 
   return (
@@ -198,9 +197,6 @@ function UserProfile() {
                                  </td>
                              
                               </tr>
-                     
-                              
-                              
                             </div>
                           </div>
                         </div>

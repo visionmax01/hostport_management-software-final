@@ -25,16 +25,14 @@ import ForgetPassword from './LoginRegisterPage/ForgetPassword';
 import ResetPassword from './LoginRegisterPage/ResetPassword';
 import PaymentForm from './PaymentPage/payment_form';
 
-// --- a function to handle authentication --- //
 const authenticate = () => {
-  // --- Get the token from localStorage --- //
   const token = localStorage.getItem('token'); 
-   // --- Return true if token exists, false otherwise --- //
   return token ? true : false;
 };
 
+
 function App() {
-  const [authenticated, setAuthenticated] = useState(authenticate()); 
+  const [authenticated, setAuthenticated] = useState(authenticate());
   const route = createBrowserRouter([
     { path: '/', element: <Home /> },
     { path: '/Payment', element: <Payment /> },

@@ -34,7 +34,7 @@ mongoose.connect(MONGO_URL).then(() => {
 
 
 app.use("/api", route);
-app.use("/api", complaintRoute);
+app.use("/complaint", complaintRoute);
 app.use("/auth", routes);
 
 export default app;

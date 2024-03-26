@@ -1,21 +1,22 @@
-.background-imgsc{
+.background-imgsc {
     background-image: url("https://images.spiceworks.com/800x400/wp-content/uploads/2023/06/21051200/WiFi-Technology.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     object-fit: fill;
-   
+
 }
 
 .Main-Section-support {
     display: flex;
     align-items: center;
-    padding-bottom: 150px; 
-    
-     
+    padding-bottom: 150px;
+
+
 }
 
 
+/* Add these styles to your CSS file */
 
 .left-side {
     width: 50%;
@@ -50,7 +51,7 @@
 
 .btn {
     width: 80px;
-    height: 30px;
+    padding: 5px 10px 5px 10px;
     background-color: #A4A2FC;
     border-style: none;
     border-radius: 5px;
@@ -59,21 +60,23 @@
     font-size: 18px;
     margin-left: 20%;
     margin-bottom: 30px;
+    color: #000063;
     cursor: pointer;
     transition: all ease 0.5s;
 }
 
-    .btn:hover {
-        width: 80px;
-        height: 30px;
-        background-color: #7775fd;
-        border-style: none;
-        border-radius: 5px;
-        margin-top: 10px;
-        outline: none;
-        font-size: 18px;
-        cursor: pointer;
-    }
+.btn:hover {
+    width: 80px;
+    padding: 5px 10px 5px 10px;
+    background-color: #7775fd;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: #000063;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+}
 
 .left-side h1 {
     font-size: 40px;
@@ -134,13 +137,13 @@
     border-top-left-radius: 12px;
 }
 
-    .heading-container h3 {
-        color: blue;
-        padding: 8px 0px;
-    }
+.heading-container h3 {
+    color: blue;
+    padding: 8px 0px;
+}
 
 .main-form-section {
-    width:76%;
+    width: 76%;
     margin-left: 12%;
 }
 
@@ -172,7 +175,7 @@
     font-size: 15px;
     transition: all ease 0.5s;
     margin-bottom: 10px;
-    width:100%;
+    width: 100%;
     outline-width: 2px;
     border-style: none;
     outline: blue groove 1px solid;
@@ -207,16 +210,52 @@
     transition: all ease 0.5s;
 }
 
-    .btn-submit:hover {
-        width: 80px;
-        height: 30px;
-        background-color: #7775fd;
-        border-style: none;
-        border-radius: 5px;
-        margin-top: 10px;
-        outline: none;
-        font-size: 18px;
-        cursor: pointer;
-    }
+.btn-submit:hover {
+    width: 80px;
+    height: 30px;
+    background-color: #7775fd;
+    border-style: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    outline: none;
+    font-size: 18px;
+    cursor: pointer;
+}
 
 
+.searchResult {
+    background-color: rgba(214, 210, 210, 0.788);
+    border-radius: 8px;
+    margin: 15px 0px 0px 0px;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+.searchResult h4 {
+    color: rgb(0, 7, 1);
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.messageOne {
+    margin-left: -50px;
+}
+
+.titleOutput {
+    color: #000063;
+}
+
+.outputScreen {
+    display: flex;
+    flex-direction: column;
+    margin-left: -100PX;
+}
+
+.labelSearchfield {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.outputScreen p {
+    color: black;
+}

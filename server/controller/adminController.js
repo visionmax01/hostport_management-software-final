@@ -23,7 +23,16 @@ import nodemailer from "nodemailer";
       return res.status(403).json({ message: "Unauthorized: Invalid token" });
     }
   };
-
+  export const getAdminProfile = async (req, res) => {
+    try {
+      // Assuming the authenticated admin details are available in req.admin
+      const admin = req.admin;
+      res.json(admin);
+    } catch (error) {
+      console.error("Error fetching admin profile:", error);
+      res.status(500).json({ message: "Server Error" });
+    }
+  };
 
 
 export const registerAdmin = async (req, res) => {
@@ -55,18 +64,38 @@ export const registerAdmin = async (req, res) => {
 
 export const adminLogin = async (req, res) => {
   const { email, password } = req.body;
-  const admin = await Admin.findOne({ email });
-  if (!admin) {
-    return res.json({ message: "Enter valid email and password" });
+
+  try {
+
+    const admin = await Admin.findOne({ email });
+
+    if (!admin) {
+   
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+    
+    const validPassword = await bcrypt.compare(password, admin.password);
+
+    if (!validPassword) {
+      
+      return res.status(400).json({ message: "Invalid email or password" });
+    }
+
+ 
+    const token = Jwt.sign({ email: admin.email}, process.env.KEY, { expiresIn: '1h' });
+
+
+    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+
+
+    return res.json({ status: true, message: "Login Successfully", token, admin });
+  } catch (error) {
+    console.error("Error logging in:", error);
+    return res.status(500).json({ message: "Server Error" });
   }
-  const validPassword = await bcrypt.compare(password, admin.password);
-  if (!validPassword) {
-    return res.json({ msg: "Enter Password is Incorrect!" });
-  }
-  const token = Jwt.sign({ username: admin.username }, process.env.KEY, { expiresIn: '1h' });
-  res.cookie('token', token,{httpOnly:true, maxAge:36000}) 
-  return res.json({ status: true, message: "Login Successfully" });
 };
+
 
 
 
@@ -134,7 +163,7 @@ export const resetPassword = async (req, res) => {
   const token = req.params.token;
   const { password } = req.body;
   try {
-    const decoded = await Jwt.verify(token, KEY);
+    const decoded = await Jwt.verify(token, process.env.KEY);
     const id = decoded.id;
     const hashedPassword = await bcrypt.hash(password, 10)
     await Admin.findByIdAndUpdate({_id: id }, { password: hashedPassword });

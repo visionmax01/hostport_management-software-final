@@ -3,7 +3,6 @@ import bcryptjs from 'bcryptjs';
 import path from "path";
 import fs from "fs";
 
-// Function to hash password
 const securePassword = async (password) => {
     try {
         const passwordHash = await bcryptjs.hash(password, 10);
@@ -13,36 +12,32 @@ const securePassword = async (password) => {
     }
 }
 
-// Controller to create a new user
-// Controller to create a new user
+
 export const createUser = async (req, res) => {
     try {
-        // Check if file is uploaded
         if (!req.file) {
             return res.status(400).json({ error: "Profile photo is required" });
         }
-
-        // Check if the email already exists in the database
         const existingUser = await User.findOne({ email: req.body.email });
         if (existingUser) {
             return res.status(400).json({ error: "Email already exists" });
         }
 
-        // Generate account number
+      
         const lastUser = await User.findOne().sort({ account: -1 });
         const lastAccountNumber = lastUser ? lastUser.account : "AV0000";
         const lastAccountNumberNumeric = parseInt(lastAccountNumber.slice(2)) + 1;
         const newAccountNumber = "AV" + lastAccountNumberNumeric.toString().padStart(4, '0');
-        // Hash password
+
         const hashedPassword = await securePassword(req.body.password);
 
-        // Create new user
+
         const newUser = new User({
             fullname: req.body.fullname,
             email: req.body.email,
             phoneNo: req.body.phoneNo,
             gender: req.body.gender,
-            account: newAccountNumber, // Adjust according to your logic
+            account: newAccountNumber,
             password: hashedPassword,
             packageDetail: req.body.packageDetail,
             startedDate: req.body.startedDate,
@@ -71,11 +66,10 @@ export const getUserPhoto = async (req, res) => {
             return res.status(404).json({ error: "User photo not found" });
         }
 
-        // Construct the path to the user's photo file
+        
         const photoDirectory = path.join(process.cwd(), "public", "userImages");
         const photoPath = path.join(photoDirectory, user.profilePhoto);
 
-        // Read the photo file and send it in the response
         fs.readFile(photoPath, (err, data) => {
             if (err) {
                 return res.status(500).json({ error: "Error reading user photo" });
@@ -132,13 +126,10 @@ export const update = async (req, res) => {
             documentProof
         } = req.body;
 
-        // Find the user by ID
         let user = await User.findById(id);
         if (!user) {
             return res.status(404).json({ msg: 'No user found with this ID' });
         }
-
-        // Update user fields
         user.fullname = fullname;
         user.email = email;
         user.phoneNo = phoneNo;
@@ -147,7 +138,15 @@ export const update = async (req, res) => {
         user.packageDetail = packageDetail;
         user.startedDate = startedDate;
         user.endedDate = endedDate;
-        user.accountStatus = accountStatus;
+
+        // Check if endedDate is in the past or equal to the current date
+        const currentDate = new Date();
+        if (endedDate && new Date(endedDate) <= currentDate) {
+            user.accountStatus = 'Inactive';
+        } else {
+            user.accountStatus = accountStatus;
+        }
+
         user.address = address;
         user.profilePhoto = profilePhoto;
         user.documentProof = documentProof;
@@ -178,3 +177,45 @@ export const deleteUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+
+
+// searchController.js
+
+
+// searchController.js
+
+
+export const searchByAccountNo = async (req, res) => {
+    try {
+        let { accountNo } = req.params;
+        // Convert account number to uppercase for case-insensitive matching
+        accountNo = accountNo.toUpperCase();
+        
+        // Search for users with account number containing the provided input
+        const user = await User.findOne({ account: { $regex: accountNo, $options: 'i' } });
+        if (!user) {
+            return res.status(404).json({ error: "User not found with this account number" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+export const searchByMobileNumber = async (req, res) => {
+    try {
+        let { mobileNumber } = req.params;
+        // Remove any non-numeric characters from mobile number
+        mobileNumber = mobileNumber.replace(/\D/g, '');
+
+        // Search for users with mobile number containing the provided input
+        const user = await User.findOne({ phoneNo: { $regex: mobileNumber, $options: 'i' } });
+        if (!user) {
+            return res.status(404).json({ error: "User not found with this mobile number" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};

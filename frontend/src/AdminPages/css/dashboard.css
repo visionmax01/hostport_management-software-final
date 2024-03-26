@@ -175,7 +175,7 @@
     width: max-content;
     display: flex;
     flex-direction: column;
-    
+
 }
 
 .date-Label {
@@ -547,7 +547,17 @@
 }
 
 
+/* search result containt css */
+.search-resuld-box122 {
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    background-color: red;
+}
 
+.table-Section thead {
+    background-color: #000000;
+}
 
 
 
@@ -561,12 +571,10 @@
         height: 25px;
     }
 
-    /* Example adjustment for the left_div component */
     .left_div {
         width: 120px;
     }
 
-    /* Example adjustment for the user_profile component */
     .user_profile {
         width: 30px;
         height: 30px;
@@ -574,29 +582,24 @@
         border-bottom-left-radius: 3px;
     }
 
-    /* Example adjustment for the user_name component */
     .user_name {
         font-size: 14px;
     }
 
-    /* Example adjustment for the Dashboard-main component */
     .Dashboard-main {
         height: 100%;
     }
 
-    /* Example adjustment for the container-containt component */
     .container-containt {
         width: 90%;
     }
 
-    /* Example adjustment for the Dashboard-card component */
     .Dashboard-card {
         width: 150px;
         height: 80px;
         font-size: 20px;
     }
 
-    /* Example adjustment for the card_datetime component */
     .card_datetime {
         width: 80%;
     }

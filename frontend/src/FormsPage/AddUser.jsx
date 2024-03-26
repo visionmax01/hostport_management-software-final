@@ -28,17 +28,17 @@ const AddUser = () => {
   const navigate = useNavigate();
 
   const inputHandler = (e) => {
-    const { name, files } = e.target;
-    if (name === "profilePhoto" || name === "documentProof") {
-      setUser({ ...user, [name]: files[0] });
-    } else {
-      setUser({ ...user, [name]: e.target.value });
-    }
+    const { name, value, files } = e.target;
+    setUser({ ...user, [name]: files ? files[0] : value });
   };
 
   const submitUserForm = async (e) => {
     e.preventDefault();
-      
+    if (!user.fullname || !user.email || !user.phoneNo || !user.gender || !user.password || !user.packageDetail || !user.startedDate || !user.endedDate || !user.accountStatus || !user.address) {
+      toast.error("All  fields are required", { className: "toastmsg" });
+      return;
+    }
+  
     try {
       const formData = new FormData();
       for (const key in user) {
@@ -52,13 +52,13 @@ const AddUser = () => {
           }
         }
       }
-  
+
       const response = await axios.post("http://localhost:8000/api/createUser", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       toast.success(response.data.message, { className: "toastmsg" });
       navigate('/manage-user');
     } catch (error) {

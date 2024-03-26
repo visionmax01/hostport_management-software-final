@@ -22,8 +22,13 @@ const ComplaintSchema =new mongoose.Schema({
     },
     complaintNumber: {
         type: String,
-        required: true,
         unique: true
+    },
+    remarks:{
+        type: String,
+    },
+    complaintStatus:{
+        type: String,
     }
 })
 

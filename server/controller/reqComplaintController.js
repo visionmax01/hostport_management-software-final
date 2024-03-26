@@ -7,6 +7,9 @@ export const createSupport = async (req, res) => {
         accountNo,
         reason,
         message,
+        complaintNumber,
+        remarks,
+        complaintStatus,
         timestamp
     } = req.body;
 
@@ -16,11 +19,13 @@ export const createSupport = async (req, res) => {
 
         // Create a new complaint
         const complaintData = new Complaint({
-            fullname,
-            accountNo,
-            reason,
-            message,
-            complaintNumber,
+            fullname:req.body.fullname,
+            accountNo:req.body.accountNo,
+            reason:req.body.reason,
+            message:req.body.message,
+            complaintNumber:complaintNumber,
+            remarks:"we are working on it",
+            complaintStatus:"open! Under Processing..",
             timestamp
         });
 
@@ -43,3 +48,52 @@ function generateComplaintNumber() {
     }
     return result;
 }
+
+
+
+
+export const getAllComplaintData = async (req, res) => {
+    try {
+        const complaintData = await Complaint.find();
+        res.status(200).json(complaintData);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+export const deleteComplaint = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const supportreq = await Complaint.findById(id);
+        if (!supportreq) {
+            return res.status(404).json({ msg: 'Complaint not found with this ID' });
+        }
+        await Complaint.findByIdAndDelete(id);
+        res.status(200).json({ msg: "Complaint deleted successfully" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+}
+
+
+
+
+// searching
+
+export const searchComplaint = async (req, res) => {
+  const { complaintNumber } = req.params;
+
+  try {
+    const complaint = await Complaint.findOne({ complaintNumber });
+    if (!complaint) {
+      return res.status(404).json({ message: "Complaint not found" });
+    }
+    return res.json(complaint);
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
