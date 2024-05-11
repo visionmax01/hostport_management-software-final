@@ -1,2 +1,2 @@
-1. first unZip node_modules.zip file then run frontend react vite is used
+1. first unZip node_modules.zip file then run frontend ?
 2. to Run Frontend use npm run dev ............ 
